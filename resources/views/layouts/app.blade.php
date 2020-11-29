@@ -35,14 +35,13 @@
                         <li class="nav-item {{ Request::is('authors') ? 'active' : '' }}">
                             <a class="nav-link" href="/authors">Authors</a>
                         </li>
-                    @else
+                        <li class="nav-item {{ Request::is('borrow/new') ? 'active' : '' }}">
+                            <a class="nav-link" href="/borrow/new">New Borrow</a>
+                        </li>
+                    @endif
                         <li class="nav-item {{ Request::is('borrow/list') ? 'active' : '' }}">
                             <a class="nav-link" href="/borrow/list">History</a>
                         </li>
-                        <li class="nav-item {{ Request::is('borrow') ? 'active' : '' }}">
-                            <a class="nav-link" href="/borrow">Borrow</a>
-                        </li>
-                    @endif
                 </ul>
             @endif
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

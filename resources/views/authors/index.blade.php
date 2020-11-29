@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="container">
-        <a href="{{action('AuthorsController@add')}}" class="btn btn-primary my-3">Add New Author</a>
+        <div class="d-flex align-items-center">
+            <h1 class="mr-auto">List of authors</h1>
+            <a href="{{action('AuthorsController@add')}}" class="btn btn-primary my-3">Add New Author</a>
+        </div>
         @forelse($authors as $author)
             <div class="border bg-secondary p-3 my-2 text-light">
                 <h4>{{$author->first_name . ' ' . $author->second_name}}</h4>
