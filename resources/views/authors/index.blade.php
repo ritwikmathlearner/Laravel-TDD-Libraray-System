@@ -6,7 +6,7 @@
         @forelse($authors as $author)
             <div class="border bg-secondary p-3 my-2 text-light">
                 <h4>{{$author->first_name . ' ' . $author->second_name}}</h4>
-                <h5>{{\Carbon\Carbon::parse($author->birth_year)->format('d/m/Y')}}</h5>
+                <p><strong>Birth year: </strong>{{$author->birth_year}}</p>
             </div>
         @empty
             <div class="alert alert-danger" role="alert">

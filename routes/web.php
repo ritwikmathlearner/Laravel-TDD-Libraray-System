@@ -1,15 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+Route::get('/borrow/list', function() {
+    return view('home');
+});
 
-Route::get('/', 'BooksController@index');
-Route::get('/books', 'BooksController@index');
-Route::post('/books', 'BooksController@store');
-Route::get('/books/add', 'BooksController@add');
+Route::post('/borrow', 'BorrowController@store');
 
-Route::get('/authors/add', 'AuthorsController@add');
-Route::get('/authors', 'AuthorsController@index');
-Route::post('/authors', 'AuthorsController@store');
+Route::middleware(['auth', 'librarian'])->group(function() {
+    Route::get('/', 'BooksController@index');
+    Route::get('/books', 'BooksController@index');
+    Route::post('/books', 'BooksController@store');
+    Route::get('/books/add', 'BooksController@add');
+
+    Route::get('/authors/add', 'AuthorsController@add');
+    Route::get('/authors', 'AuthorsController@index');
+    Route::post('/authors', 'AuthorsController@store');
+});
 
 Auth::routes();
 
