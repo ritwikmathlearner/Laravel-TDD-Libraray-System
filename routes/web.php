@@ -17,6 +17,7 @@ Route::middleware(['auth', 'librarian'])->group(function () {
 
     Route::get('/borrow/new', 'BorrowController@create');
     Route::post('/borrow', 'BorrowController@store');
+    Route::post('/borrow/return', 'BorrowController@returnBook');
 });
 
 Auth::routes();

@@ -8,7 +8,7 @@
             <a href="{{action('AuthorsController@add')}}" class="btn btn-primary ml-2 my-3">Add New Author</a>
         </div>
         @forelse($books as $book)
-            <div class="border bg-secondary p-3 my-2 text-light">
+            <div class="border border-dark text-dark rounded p-3 my-2 text-light">
                 <h5>{{$book->title}}</h5>
                 <p>by {{$book->authors[0]->first_name . ' ' . $book->authors[0]->second_name}}</p>
                 <p><strong>Available quantity: </strong>{{ $book->stocks }}</p>

@@ -7,7 +7,7 @@
             <a href="{{action('AuthorsController@add')}}" class="btn btn-primary my-3">Add New Author</a>
         </div>
         @forelse($authors as $author)
-            <div class="border bg-secondary p-3 my-2 text-light">
+            <div class="border border-dark text-dark rounded p-3 my-2 text-light">
                 <h4>{{$author->first_name . ' ' . $author->second_name}}</h4>
                 <p><strong>Birth year: </strong>{{$author->birth_year}}</p>
             </div>

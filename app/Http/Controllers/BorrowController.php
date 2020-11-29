@@ -13,9 +13,9 @@ class BorrowController extends Controller
     public function index()
     {
         if(auth()->user()->type === 'librarian') {
-            $borrows = Borrow::all();
+            $borrows = Borrow::all()->sortByDesc('created_at');
         } elseif(auth()->user()->type === 'member') {
-            $borrows = Borrow::where('user_id', auth()->id())->get();
+            $borrows = Borrow::where('user_id', auth()->id())->orderBy('created_at', 'DESC')->get();
         } else {
             return back();
         }
@@ -39,6 +39,15 @@ class BorrowController extends Controller
         Book::find($request->book_id)->decrement('stocks');
         Borrow::create($validator);
 
+        return redirect('/borrow/list');
+    }
+
+    public function returnBook(Request $request)
+    {
+        $borrow = Borrow::find($request->borrow_id);
+        $borrow->actual_return_date = Carbon::today()->format('Y/m/d');
+        $borrow->save();
+        $borrow->book->increment('stocks');
         return redirect('/borrow/list');
     }
 }
