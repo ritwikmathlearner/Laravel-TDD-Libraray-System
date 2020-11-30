@@ -11,9 +11,12 @@ class BorrowTest extends TestCase
     use WithFaker, RefreshDatabase;
 
     /** @test */
-    public function borrow_a_book()
+    public function borrow_a_book_by_librarian()
     {
         $this->withoutExceptionHandling();
+
+        $this->be(factory('App\User')->create(['type' => 'librarian']));
+
         $author = factory('App\Author')->create();
         $book = factory('App\Book')->create();
         $book->authors()->attach($author->id);
@@ -22,10 +25,7 @@ class BorrowTest extends TestCase
         $attributes = [
             'book_id' => $book->id,
             'user_id' => $user->id,
-            'borrow_date' => $this->faker->date,
             'expected_return_date' => $this->faker->date,
-            'actual_return_date' => $this->faker->date,
-            'fine' => 0.00,
         ];
         $this->post('/borrow', $attributes);
         $this->assertDatabaseHas('borrows', $attributes);
